@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -120,29 +121,29 @@ class _LabelCustomTextField extends State<LabelCustomTextField> {
 
               widget.isOptional == true
                   ? Text(
-                    "*",
-                    style: GoogleFonts.poppins(
-                      color: AppColors.red,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
+                      "*",
+                      style: GoogleFonts.poppins(
+                        color: AppColors.red,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
                   : SizedBox.shrink(),
             ],
           ),
           SizedBox(height: 5),
           Container(
             decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10.r),
               shape: BoxShape.rectangle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 1,
-                  blurRadius: 7,
-                  offset: const Offset(0, 6),
-                ),
-              ],
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Colors.black.withOpacity(0.1),
+              //     spreadRadius: 1,
+              //     blurRadius: 7,
+              //     offset: const Offset(0, 6),
+              //   ),
+              // ],
             ),
             width: w,
             child: TextFormField(
@@ -152,22 +153,20 @@ class _LabelCustomTextField extends State<LabelCustomTextField> {
               autovalidateMode: widget.autovalidateMode,
               autofillHints: widget.autofillHints,
               inputFormatters: widget.inputFormatters,
-              onTap:
-                  widget.onTap != null
-                      ? () {
-                        widget.onTap!();
-                      }
-                      : null,
+              onTap: widget.onTap != null
+                  ? () {
+                      widget.onTap!();
+                    }
+                  : null,
               onChanged: (value) {
                 if (widget.onchanged != null) {
                   widget.onchanged!(value);
                 }
               },
               controller: widget.controller,
-              validator:
-                  widget.validator == null
-                      ? null
-                      : (val) => widget.validator!(val ?? ""),
+              validator: widget.validator == null
+                  ? null
+                  : (val) => widget.validator!(val ?? ""),
               obscureText: widget.passwordfield == true ? showpassword : false,
               keyboardType: widget.inputType ?? TextInputType.text,
               maxLines: widget.passwordfield == true ? 1 : widget.lines,
@@ -177,40 +176,44 @@ class _LabelCustomTextField extends State<LabelCustomTextField> {
                 label: widget.label,
                 labelText: widget.labelText,
                 labelStyle: const TextStyle(),
-                fillColor: AppColors.white,
+                fillColor: AppColors.grey.withOpacity(0.2),
                 prefixIcon: showPrefixIcon ? widget.prefix : null,
-                suffixIcon:
-                    widget.passwordfield == true
-                        ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              showpassword = !showpassword;
-                            });
-                          },
-                          icon:
-                              showpassword
-                                  ? Icon(
-                                    Ionicons.eye_off,
-                                    size: 20,
-                                    color: Theme.of(context).primaryColor,
-                                  )
-                                  : Icon(
-                                    Icons.remove_red_eye,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                        )
-                        : widget.suffix,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.greyText, width: 0.3),
+                suffixIcon: widget.passwordfield == true
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() {
+                            showpassword = !showpassword;
+                          });
+                        },
+                        icon: showpassword
+                            ? Icon(
+                                Ionicons.eye_off,
+                                size: 20,
+                                color: Theme.of(context).primaryColor,
+                              )
+                            : Icon(
+                                Icons.remove_red_eye,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                      )
+                    : widget.suffix,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
+                  borderSide: BorderSide(
+                    color: AppColors.greyText,
+                    width: 0.3.w,
+                  ),
                 ),
                 hintText: widget.hintText,
                 focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(
                     color: Theme.of(context).primaryColor,
                     width: 0.3,
                   ),
                 ),
-                enabledBorder: const OutlineInputBorder(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.r),
                   borderSide: BorderSide(color: AppColors.greyText, width: 0.3),
                 ),
                 disabledBorder: const OutlineInputBorder(),

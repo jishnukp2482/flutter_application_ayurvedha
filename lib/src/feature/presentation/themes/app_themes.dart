@@ -5,8 +5,8 @@ import 'app_colors.dart';
 class AppTheme {
   static ThemeData get primaryTheme => ThemeData(
     scaffoldBackgroundColor: AppColors.white,
-    primaryColor: AppColors.nagmainColor,
-    primaryColorLight: AppColors.nagmainColor2,
+    primaryColor: AppColors.green,
+    primaryColorLight: AppColors.green,
     primarySwatch: Colors.red,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_ayurvedha/src/feature/presentation/pages/splash_screen.dart' show SplashScreen;
+import 'package:flutter_application_ayurvedha/src/feature/presentation/pages/auth/signin.dart';
+import 'package:flutter_application_ayurvedha/src/feature/presentation/pages/splash_screen.dart'
+    show SplashScreen;
 import 'package:flutter_application_ayurvedha/src/feature/presentation/routes/app_pages.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,7 +14,11 @@ class AppRoutes {
         name: AppPages.splashScreen,
         builder: (context, state) => const SplashScreen(),
       ),
-     
+      GoRoute(
+        path: AppPages.loginPage,
+        name: AppPages.loginPage,
+        builder: (context, state) => const SigninScreen(),
+      ),
     ],
   );
 }

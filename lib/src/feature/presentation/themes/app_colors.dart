@@ -14,7 +14,7 @@ class AppColors {
   static const offWhite1 = Color(0xFFF7F7F7);
   static const offBlack = Color(0xFF2E2E2E);
   static const skyBlue = Color(0xFF4CA0C6);
-  static const green = Color(0xFF2BAA1D);
+  static const green = Color(0xFF006837);
   static const green2 = Color(0xFF49D244);
   static const greenDark = Color(0xFF113D0E);
   static const greyText = Color(0xFFA4A4A4);
@@ -46,7 +46,6 @@ class AppColors {
   static const shadow = Color(0x3F000000);
   static const adColor = Color(0xFFFFF9F9);
 
-
   /// !>
   /// Transaction color
   static const transcGra1 = Color(0xffFFECEC);
@@ -61,10 +60,12 @@ class AppColors {
   static const jnlmainColor = Color(0xff303E9F);
   static const jnlmainColor2 = Color(0xffFFA53C);
 
-  static const Color primary = Color(0xFF2962FF);  // A professional blue
-  static const Color primaryDark = Color(0xFF0039CB);  // Darker blue
-  static const Color success = Color(0xFF00C853);  // Green for success states
-  static const Color background = Color(0xFFF5F7FB);  // Light grayish-blue background
+  static const Color primary = Color(0xFF2962FF); // A professional blue
+  static const Color primaryDark = Color(0xFF0039CB); // Darker blue
+  static const Color success = Color(0xFF00C853); // Green for success states
+  static const Color background = Color(
+    0xFFF5F7FB,
+  ); // Light grayish-blue background
 
   ///Velanthavalam
   static const velanthavalammainColor = Color(0xff3293C6);
