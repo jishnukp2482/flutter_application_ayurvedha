@@ -7,6 +7,18 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return SafeArea(
+      child: Scaffold(
+        body: SizedBox.expand(
+          child: SvgPicture.asset(
+            AppAssets.splash,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
   }
-}
+  }
+
