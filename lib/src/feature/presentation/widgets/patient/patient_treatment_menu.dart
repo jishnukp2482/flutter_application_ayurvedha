@@ -1,27 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_ayurvedha/src/feature/domain/entities/patient/patient_treatmentmodal.dart';
+import 'package:flutter_application_ayurvedha/src/feature/presentation/manager/patient/patient_provider.dart';
 import 'package:flutter_application_ayurvedha/src/feature/presentation/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PatientTreatmentMenu extends StatelessWidget {
   const PatientTreatmentMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 2,
-      itemBuilder: (context, index) {
-        return TreamentItem(count: index);
+    return Consumer<PatientProvider>(
+      builder: (context, ref, child) {
+        if (ref.addtreatMent) {
+          return Center(child: CircularProgressIndicator());
+        } else if (ref.patientTreatmentList.isEmpty) {
+          return Center(child: Text("No Data Found"));
+        } else {
+          return ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: ref.patientTreatmentList.length,
+            itemBuilder: (context, index) {
+              return TreamentItem(
+                count: index,
+                modal: ref.patientTreatmentList[index],
+              );
+            },
+          );
+        }
       },
     );
   }
 }
 
 class TreamentItem extends StatelessWidget {
-  const TreamentItem({super.key, required this.count});
+  const TreamentItem({super.key, required this.count, required this.modal});
   final int count;
+  final PatientTreatmentmodal modal;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +67,7 @@ class TreamentItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "hjsskksks",
+                      modal.treatment.name,
                       style: GoogleFonts.poppins(
                         color: AppColors.black,
                         fontWeight: FontWeight.w600,
@@ -79,7 +96,7 @@ class TreamentItem extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "1",
+                                    modal.maleCount,
                                     style: GoogleFonts.poppins(
                                       color: AppColors.green,
                                     ),
@@ -94,7 +111,7 @@ class TreamentItem extends StatelessWidget {
                             spacing: 10.w,
                             children: [
                               Text(
-                                "Female",
+                                modal.femaleCount,
                                 style: GoogleFonts.poppins(
                                   color: AppColors.green,
                                   fontWeight: FontWeight.w500,

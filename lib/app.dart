@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => AuthProvider(sl())),
-          ChangeNotifierProvider(create: (context) => PatientProvider(sl(),sl())),
+          ChangeNotifierProvider(create: (context) => PatientProvider(sl(),sl(),sl(),sl())),
         ],
         child: MaterialApp.router(
           theme: AppTheme.primaryTheme,

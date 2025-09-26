@@ -29,6 +29,7 @@ class LabelWithDropDownField<T> extends StatelessWidget {
     this.readOnly = false,
     this.labelStyle,
     this.hintStyle,
+    this.validator
   });
   final String textDropDownLabel;
   final String? hintText;
@@ -51,7 +52,7 @@ class LabelWithDropDownField<T> extends StatelessWidget {
   final bool readOnly;
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
-
+final String? Function(T?)? validator;
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -99,6 +100,7 @@ class LabelWithDropDownField<T> extends StatelessWidget {
             ),
             width: w,
             child: DropdownSearch<T>(
+              validator:validator ,
               enabled: enabled,
               compareFn: (item1, item2) => true,
               onBeforePopupOpening: onBeforePopupOpening,
