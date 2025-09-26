@@ -5,7 +5,6 @@ import 'package:flutter_application_ayurvedha/src/feature/presentation/themes/ap
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class LabelWithDropDownField<T> extends StatelessWidget {
   LabelWithDropDownField({
     super.key,
@@ -74,13 +73,13 @@ class LabelWithDropDownField<T> extends StatelessWidget {
               ),
               isOptional == true
                   ? Text(
-                    "*",
-                    style: GoogleFonts.poppins(
-                      color: AppColors.red,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
+                      "*",
+                      style: GoogleFonts.poppins(
+                        color: AppColors.red,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )
                   : SizedBox.shrink(),
             ],
           ),
@@ -89,14 +88,14 @@ class LabelWithDropDownField<T> extends StatelessWidget {
             decoration: BoxDecoration(
               //   borderRadius: BorderRadius.circular(15),
               shape: BoxShape.rectangle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 1,
-                  blurRadius: 7,
-                  offset: const Offset(0, 6),
-                ),
-              ],
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Colors.black.withOpacity(0.1),
+              //     spreadRadius: 1,
+              //     blurRadius: 7,
+              //     offset: const Offset(0, 6),
+              //   ),
+              // ],
             ),
             width: w,
             child: DropdownSearch<T>(
@@ -146,24 +145,28 @@ class LabelWithDropDownField<T> extends StatelessWidget {
                 decoration: InputDecoration(
                   alignLabelWithHint: alignLabelWithHint,
                   icon: icon,
-                  fillColor: AppColors.white,
+                  fillColor: AppColors.grey.withOpacity(0.2),
                   filled: true,
-                  border: const OutlineInputBorder(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(
                       color: AppColors.greyText,
                       width: 0.3,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(
                       color: Theme.of(context).primaryColor,
                       width: 0.3,
                     ),
                   ),
-                  enabledBorder: const OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(color: AppColors.white, width: 0.3),
                   ),
-                  disabledBorder: const OutlineInputBorder(
+                  disabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
                     borderSide: BorderSide(
                       color: AppColors.greyText,
                       width: 0.1,

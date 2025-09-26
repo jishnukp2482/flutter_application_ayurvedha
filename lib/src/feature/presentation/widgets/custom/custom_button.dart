@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_ayurvedha/src/feature/presentation/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGradientButton extends StatelessWidget {
@@ -35,7 +36,7 @@ class CustomGradientButton extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(10.r),
           ),
           padding: const EdgeInsets.all(0),
         ),
@@ -63,7 +64,7 @@ class CustomGradientButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              title.toUpperCase(),
+              title,
               style: TextStyle(
                 color: textColor ?? Colors.white,
                 fontSize: 16.0,
@@ -134,7 +135,9 @@ class CustomGradientLoadingButton extends StatelessWidget {
               ),
             ],
           ),
-          child: Center(child: CircularProgressIndicator()),
+          child: Center(
+            child: CircularProgressIndicator(color: AppColors.green),
+          ),
         ),
       ),
     );

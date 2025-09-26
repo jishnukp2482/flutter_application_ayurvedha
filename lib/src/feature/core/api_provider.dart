@@ -191,9 +191,10 @@ class ApiProvider {
 
   Future<dynamic> post(
     String endPoint,
-    dynamic body, {
+    Map<String, dynamic> body, {
     File? file,
     String fileFieldName = "file",
+    bool isFormData = false, 
   }) async {
     prettyPrint("📤 POST Request to: $endPoint");
 
@@ -201,34 +202,16 @@ class ApiProvider {
       final headers = await getAuthHeaders();
       dynamic requestBody = body;
 
-      try {
-        if (body is Map || body is List) {
-          prettyPrint("📝 Request body:\n${prettyJson(body)}");
-        } else if (body != null && body.toJson is Function) {
-          final jsonBody = (body as dynamic).toJson();
-          prettyPrint(
-            "📝 Request body (from toJson):\n${prettyJson(jsonBody)}",
-          );
-          requestBody = jsonBody;
-        } else {
-          prettyPrint("📝 Request body (raw):\n$body");
-        }
-      } catch (e) {
-        prettyPrint("⚠️ Failed to pretty-print request body: $e");
-      }
-
-      // Handle file upload via multipart/form-data
+      
       if (file != null) {
         final formMap = <String, dynamic>{};
 
-        // Convert body fields to string
-        if (requestBody is Map<String, dynamic>) {
-          for (var entry in requestBody.entries) {
-            formMap[entry.key] = entry.value.toString(); // important
-          }
-        }
+       
+        body.forEach((key, value) {
+          formMap[key] = value.toString();
+        });
 
-        // Add the selfie file
+       
         formMap[fileFieldName] = await MultipartFile.fromFile(
           file.path,
           filename: file.path.split('/').last,
@@ -238,11 +221,17 @@ class ApiProvider {
         prettyPrint(
           "📦 Sending as multipart/form-data with file: ${file.path}",
         );
+      } else if (isFormData) {
+        
+        requestBody = FormData.fromMap(
+          body.map((k, v) => MapEntry(k, v.toString())),
+        );
+        prettyPrint("📦 Sending as FormData (no file)");
       } else {
-        prettyPrint("📨 Sending as raw JSON (no file)");
+        
+        prettyPrint("📨 Sending as raw JSON");
       }
 
-      // Make POST request
       final Response response = await _dio.post(
         endPoint,
         data: requestBody,
@@ -254,13 +243,13 @@ class ApiProvider {
       );
       prettyPrint("Statuscode :: ${response.statusCode}");
 
-      final responseData = classifyResponse(response);
-      return responseData;
+      return classifyResponse(response);
     } on DioException catch (e) {
       prettyPrint("❌ Error during POST: $e");
       throw FetchDataException("Internet Error");
     }
   }
+
 
   Future<dynamic> put(String endPoint, Map<String, dynamic> body) async {
     prettyPrint("on post call");
