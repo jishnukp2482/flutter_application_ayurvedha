@@ -304,11 +304,11 @@ class PatientProvider extends ChangeNotifier {
     String payment,
     String phone,
     String address,
-    double total_amount,
-    double discount_amount,
-    double advance_amount,
-    double balance_amount,
-    String date_nd_time,
+    double totalAmount,
+    double discountAmount,
+    double advanceAmount,
+    double balanceAmount,
+    String dateNdTime,
     String male,
     String female,
     String branch,
@@ -324,11 +324,11 @@ class PatientProvider extends ChangeNotifier {
         payment: payment,
         phone: phone,
         address: address,
-        total_amount: total_amount,
-        discount_amount: discount_amount,
-        advance_amount: advance_amount,
-        balance_amount: balance_amount,
-        date_nd_time: date_nd_time,
+        total_amount: totalAmount,
+        discount_amount: discountAmount,
+        advance_amount: advanceAmount,
+        balance_amount: balanceAmount,
+        date_nd_time: dateNdTime,
         id: "",
         male: male,
         female: female,
@@ -346,6 +346,8 @@ class PatientProvider extends ChangeNotifier {
       } else {
         patientRegState = ResponseClassify.error(patientRegResponse.message);
       }
+      resetPatientForm();
+      context.pop();
     } catch (e) {
       patientRegState = ResponseClassify.error("$e");
       bottomMsg(context, "Failed", "$e", false);

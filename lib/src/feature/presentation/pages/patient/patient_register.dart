@@ -10,6 +10,7 @@ import 'package:flutter_application_ayurvedha/src/feature/presentation/widgets/c
 import 'package:flutter_application_ayurvedha/src/feature/presentation/widgets/patient/add_treatment.dart';
 import 'package:flutter_application_ayurvedha/src/feature/presentation/widgets/patient/patient_treatment_menu.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class PatientRegister extends StatelessWidget {
               leading: IconButton(
                 onPressed: () {
                   pateintProvider.resetPatientForm();
+                  context.pop();
                 },
                 icon: Icon(Icons.arrow_back, color: AppColors.black),
               ),
